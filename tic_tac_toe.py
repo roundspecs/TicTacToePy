@@ -54,6 +54,8 @@ while(True):
         break
     if set_board(prompt()):
         if (did_win(user, board, win_lines)):
+            system('cls')
+            show_board()
             print(user + ' won!')
             break
         user = changeTurn(user)
