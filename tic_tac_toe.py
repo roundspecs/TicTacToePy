@@ -39,7 +39,7 @@ def changeTurn(user):
 
 def did_win(user, board, win_lines):
     for line in win_lines:
-        if user in [board[line[0]], board[line[1]], board[line[2]]]:
+        if board[line[0]]== user and board[line[1]]== user and board[line[2]]== user:
             return True
     return False
 
