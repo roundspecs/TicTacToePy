@@ -5,7 +5,6 @@ user = '❌'
 
 for i in range(9):
     board[i] = str(board[i]) + " "
-    
 
 def show_board():
     print("┌──┬──┬──┐")
@@ -16,14 +15,21 @@ def show_board():
     print("└──┴──┴──┘")
 
 def prompt():
+    return int(input('Position: '))-1
+
+def set_board(index):
+    if board[index]!='❌' and board[index]!='⭕':
+        board[index]=user
+        return True
+    else:
+        return False
+
+def changeTurn(user):
+    return '⭕' if user=='❌' else "❌"
+
+while(True):
     os.system('cls')
     print('Turn: ' + user)
     show_board()
-    return int(input('Position: '))
-
-def set_board(index):
-    board[index-1]=user
-
-while(True):
-    set_board(prompt())
-    user = '⭕' if user=='❌' else "❌"
+    if(set_board(prompt()) == True):
+        user = changeTurn(user)
