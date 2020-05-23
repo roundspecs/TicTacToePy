@@ -30,9 +30,12 @@ def set_board(index):
 def changeTurn(user):
     return '⭕' if user=='❌' else "❌"
 
+turns = 0
 while(True):
     os.system('cls')
     print('Turn: ' + user)
     show_board()
+    if turns >= 9: break
     if(set_board(prompt()) == True):
         user = changeTurn(user)
+        turns += 1
