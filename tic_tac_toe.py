@@ -1,3 +1,5 @@
+import os
+
 board  = list(range(1,10))
 def show_board():
     print("┌─┬─┬─┐")
@@ -7,4 +9,9 @@ def show_board():
             print("├─┼─┼─┤")
     print("└─┴─┴─┘")
 
-showBoard()
+def prompt():
+    os.system('cls')
+    show_board()
+    return int(input('Position: '))
+
+prompt()
