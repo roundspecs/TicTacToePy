@@ -1,6 +1,6 @@
-import os
+from os import system
 
-board  = list(range(1,10))
+board = [str(i) + " " for i in range(1, 10)]
 user = '❌'
 win_lines = [
     [0, 1, 2], [0, 3, 6],
@@ -9,8 +9,6 @@ win_lines = [
     [3, 5, 7], [0, 4, 8]
 ]
 
-for i in range(9):
-    board[i] = str(board[i]) + " "
 
 def show_board():
     print("┌──┬──┬──┐")
@@ -20,37 +18,41 @@ def show_board():
             print("├──┼──┼──┤")
     print("└──┴──┴──┘")
 
+
 def prompt():
     answer = int(input('Position: '))
     while (1 > answer or answer > 9):
         answer = int(input('Try again: '))
     return answer-1
 
+
 def set_board(index):
-    if board[index]!='❌' and board[index]!='⭕':
-        board[index]=user
+    if board[index] != '❌' and board[index] != '⭕':
+        board[index] = user
         return True
-    else:
-        return False
+    return False
+
 
 def changeTurn(user):
-    return '⭕' if user=='❌' else "❌"
+    return '⭕' if user == '❌' else "❌"
+
 
 def did_win(user, board, win_lines):
     for line in win_lines:
-        if board[line[0]]== user and board[line[1]]== user and board[line[2]]== user:
+        if user in [board[line[0]], board[line[1]], board[line[2]]]:
             return True
     return False
 
+
 turns = 0
 while(True):
-    os.system('cls')
+    system('cls')
     print('Turn: ' + user)
     show_board()
     if turns >= 9:
         print("It's a draw. Both of you suck!")
         break
-    if(set_board(prompt()) == True):
+    if set_board(prompt()):
         if (did_win(user, board, win_lines)):
             print(user + ' won!')
             break
