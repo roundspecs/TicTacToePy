@@ -15,7 +15,10 @@ def show_board():
     print("└──┴──┴──┘")
 
 def prompt():
-    return int(input('Position: '))-1
+    answer = int(input('Position: '))
+    while (1 > answer or answer > 9):
+        answer = int(input('Try again: '))
+    return answer-1
 
 def set_board(index):
     if board[index]!='❌' and board[index]!='⭕':
